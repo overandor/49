@@ -1,0 +1,1 @@
+{"name":"overworker","version":"0.1.0","private":false,"description":"Production-sale scaffold for Overworker investor/readiness workflow.","scripts":{"dev":"python -m overworker.cli --help","test":"pytest -q"},"keywords":["ai-agents","r-and-d","investor-readiness","github-audit","llm"],"license":"MIT"}

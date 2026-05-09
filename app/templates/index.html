@@ -12,7 +12,7 @@
       <div>
         <p class="eyebrow">Overworker / Operator Workflow Vault</p>
         <h1>Turn messy technical work into verified deliverable packages.</h1>
-        <p class="lede">Dashboard demo with Overwork Score, Verification Firewall, report export preview, and best-effort remote no-key LLM analysis with deterministic fallback.</p>
+        <p class="lede">Dashboard demo with Overwork Score, Verification Firewall, claim labeling, secret scanning, package export, and best-effort remote no-key LLM analysis with deterministic fallback.</p>
       </div>
       <div class="score-card">
         <span class="label">Readiness State</span>
@@ -39,6 +39,23 @@
         <p>Remote public no-key LLM if available; deterministic fallback if unavailable.</p>
         <textarea id="archiveText" placeholder="Paste chat archive, repo summary, or product notes">Overworker converts messy GitHub repos, Hugging Face Spaces, chats, and product ideas into investor-ready packages using project memory, worker routing, verification firewall, and Overwork Score.</textarea>
         <button id="llmBtn">Analyze with LLM</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>4. Export package</h2>
+        <p>Create a local demo ZIP package containing scan JSON, verification, score, secrets, and Markdown report.</p>
+        <button id="exportBtn">Export demo package</button>
+        <pre id="exportOutput">No export yet.</pre>
+      </div>
+      <div class="card">
+        <h2>Secret Scanner</h2>
+        <pre id="secrets">No secret scan yet.</pre>
+      </div>
+      <div class="card">
+        <h2>Claim Labels</h2>
+        <pre id="claims">No claim labels yet.</pre>
       </div>
     </section>
 

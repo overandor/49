@@ -12,7 +12,7 @@
       <div>
         <p class="eyebrow">Overworker / Operator Workflow Vault</p>
         <h1>Turn messy technical work into verified deliverable packages.</h1>
-        <p class="lede">Dashboard demo with Overwork Score, Verification Firewall, claim labeling, secret scanning, package export, and best-effort remote no-key LLM analysis with deterministic fallback.</p>
+        <p class="lede">Dashboard demo with GitHub ingestion, Overwork Score, Verification Firewall, claim labeling, secret scanning, package export, and best-effort remote no-key LLM analysis with deterministic fallback.</p>
       </div>
       <div class="score-card">
         <span class="label">Readiness State</span>
@@ -28,23 +28,30 @@
         <button id="demoBtn">Generate demo report</button>
       </div>
       <div class="card">
-        <h2>2. Mock uploaded project</h2>
+        <h2>2. Public GitHub repo</h2>
+        <p>Fetch supported text files from a public GitHub URL and generate an Overworker report.</p>
+        <input id="githubUrl" value="https://github.com/overandor/49" />
+        <button id="githubBtn">Analyze GitHub repo</button>
+        <pre id="githubOutput">No GitHub ingest yet.</pre>
+      </div>
+      <div class="card">
+        <h2>3. Mock uploaded project</h2>
         <p>Simulate a repo with or without a README.</p>
         <input id="projectName" value="Sample Project" />
         <textarea id="readme" placeholder="Optional README text"></textarea>
         <button id="mockBtn">Analyze mock project</button>
       </div>
-      <div class="card">
-        <h2>3. LLM archive analyst</h2>
-        <p>Remote public no-key LLM if available; deterministic fallback if unavailable.</p>
-        <textarea id="archiveText" placeholder="Paste chat archive, repo summary, or product notes">Overworker converts messy GitHub repos, Hugging Face Spaces, chats, and product ideas into investor-ready packages using project memory, worker routing, verification firewall, and Overwork Score.</textarea>
-        <button id="llmBtn">Analyze with LLM</button>
-      </div>
     </section>
 
     <section class="grid">
       <div class="card">
-        <h2>4. Export package</h2>
+        <h2>4. LLM archive analyst</h2>
+        <p>Remote public no-key LLM if available; deterministic fallback if unavailable.</p>
+        <textarea id="archiveText" placeholder="Paste chat archive, repo summary, or product notes">Overworker converts messy GitHub repos, Hugging Face Spaces, chats, and product ideas into investor-ready packages using project memory, worker routing, verification firewall, and Overwork Score.</textarea>
+        <button id="llmBtn">Analyze with LLM</button>
+      </div>
+      <div class="card">
+        <h2>5. Export package</h2>
         <p>Create a local demo ZIP package containing scan JSON, verification, score, secrets, and Markdown report.</p>
         <button id="exportBtn">Export demo package</button>
         <pre id="exportOutput">No export yet.</pre>
@@ -53,13 +60,13 @@
         <h2>Secret Scanner</h2>
         <pre id="secrets">No secret scan yet.</pre>
       </div>
+    </section>
+
+    <section class="grid">
       <div class="card">
         <h2>Claim Labels</h2>
         <pre id="claims">No claim labels yet.</pre>
       </div>
-    </section>
-
-    <section class="grid two">
       <div class="card">
         <h2>Verification Firewall</h2>
         <pre id="verification">No report yet.</pre>

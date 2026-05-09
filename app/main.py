@@ -5,6 +5,7 @@ from tempfile import TemporaryDirectory
 
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from overworker.chat_archive_parser import parse_chat_archive
@@ -14,8 +15,11 @@ from overworker.scoring.overwork_score import score_project
 from overworker.verification.firewall import verify_project
 from overworker.export.markdown_exporter import render_report
 
+APP_DIR = Path(__file__).parent
+
 app = FastAPI(title="Overworker Dashboard", version="0.2.0")
-templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
+app.mount("/static", StaticFiles(directory=str(APP_DIR / "static")), name="static")
+templates = Jinja2Templates(directory=str(APP_DIR / "templates"))
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -53,7 +57,6 @@ async def analyze_text(text: str = Form(...)) -> JSONResponse:
 
 @app.post("/api/demo-report")
 async def demo_report() -> JSONResponse:
-    # Scan this repo/app working directory as the default demo subject.
     root = Path.cwd()
     scan = scan_repo(root)
     verification = verify_project(scan)

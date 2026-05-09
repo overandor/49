@@ -1,0 +1,11 @@
+{
+  "concept_clarity": 0.85,
+  "implementation_evidence": 0.55,
+  "documentation_quality": 0.70,
+  "demo_readiness": 0.45,
+  "verification_strength": 0.40,
+  "commercial_packaging": 0.65,
+  "final_score": 0.40,
+  "weakest_component": "verification_strength",
+  "state": "R&D Asset"
+}

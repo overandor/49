@@ -12,6 +12,7 @@ from fastapi.templating import Jinja2Templates
 from overworker.chat_archive_parser import parse_chat_archive
 from overworker.export.markdown_exporter import render_report, write_report
 from overworker.export.zip_exporter import export_zip
+from overworker.github_ingest import fetch_public_repo
 from overworker.llm import remote_no_key_reply
 from overworker.repo_scanner import scan_repo
 from overworker.scoring.overwork_score import score_project
@@ -21,7 +22,7 @@ from overworker.verification.secret_scanner import scan_path_for_secrets, scan_t
 
 APP_DIR = Path(__file__).parent
 
-app = FastAPI(title="Overworker Dashboard", version="0.3.0")
+app = FastAPI(title="Overworker Dashboard", version="0.4.0")
 app.mount("/static", StaticFiles(directory=str(APP_DIR / "static")), name="static")
 templates = Jinja2Templates(directory=str(APP_DIR / "templates"))
 
@@ -48,7 +49,7 @@ async def index(request: Request) -> HTMLResponse:
 
 @app.get("/health")
 async def health() -> dict:
-    return {"ok": True, "service": "overworker-dashboard", "version": "0.3.0"}
+    return {"ok": True, "service": "overworker-dashboard", "version": "0.4.0"}
 
 
 @app.post("/api/analyze-text")
@@ -95,6 +96,16 @@ async def mock_upload_report(project_name: str = Form("Sample Project"), readme:
         (root / "src" / "cli.py").write_text("print('hello')\n")
         payload = build_report_payload(root)
         payload["project_name"] = project_name
+        return JSONResponse(payload)
+
+
+@app.post("/api/github-report")
+async def github_report(repo_url: str = Form(...)) -> JSONResponse:
+    """Fetch a public GitHub repo text subset and generate an Overworker report."""
+    with TemporaryDirectory() as tmp:
+        ingest = await fetch_public_repo(repo_url, tmp)
+        payload = build_report_payload(Path(tmp))
+        payload["github_ingest"] = ingest.to_dict()
         return JSONResponse(payload)
 
 

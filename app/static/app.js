@@ -22,6 +22,16 @@ document.getElementById('demoBtn').addEventListener('click', async () => {
   setReport(data);
 });
 
+document.getElementById('githubBtn').addEventListener('click', async () => {
+  const fd = new FormData();
+  fd.append('repo_url', document.getElementById('githubUrl').value);
+  document.getElementById('githubOutput').textContent = 'Fetching public GitHub repo...';
+  document.getElementById('report').textContent = 'Analyzing GitHub repo...';
+  const data = await postForm('/api/github-report', fd);
+  setReport(data);
+  document.getElementById('githubOutput').textContent = fmt(data.github_ingest || {});
+});
+
 document.getElementById('mockBtn').addEventListener('click', async () => {
   const fd = new FormData();
   fd.append('project_name', document.getElementById('projectName').value);

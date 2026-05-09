@@ -1,0 +1,6 @@
+services:
+  overworker:
+    build: .
+    command: overworker scan examples/sample-chat-archive.md --out out/sample
+    volumes:
+      - .:/app

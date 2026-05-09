@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overworker Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Overworker / Operator Workflow Vault</p>
+        <h1>Turn messy technical work into verified deliverable packages.</h1>
+        <p class="lede">Dashboard demo with Overwork Score, Verification Firewall, report export preview, and best-effort remote no-key LLM analysis with deterministic fallback.</p>
+      </div>
+      <div class="score-card">
+        <span class="label">Readiness State</span>
+        <strong id="state">Not scanned</strong>
+        <span id="score">0.00</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>1. Demo repo scan</h2>
+        <p>Scan the running repo/workdir and generate a readiness report.</p>
+        <button id="demoBtn">Generate demo report</button>
+      </div>
+      <div class="card">
+        <h2>2. Mock uploaded project</h2>
+        <p>Simulate a repo with or without a README.</p>
+        <input id="projectName" value="Sample Project" />
+        <textarea id="readme" placeholder="Optional README text"></textarea>
+        <button id="mockBtn">Analyze mock project</button>
+      </div>
+      <div class="card">
+        <h2>3. LLM archive analyst</h2>
+        <p>Remote public no-key LLM if available; deterministic fallback if unavailable.</p>
+        <textarea id="archiveText" placeholder="Paste chat archive, repo summary, or product notes">Overworker converts messy GitHub repos, Hugging Face Spaces, chats, and product ideas into investor-ready packages using project memory, worker routing, verification firewall, and Overwork Score.</textarea>
+        <button id="llmBtn">Analyze with LLM</button>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="card">
+        <h2>Verification Firewall</h2>
+        <pre id="verification">No report yet.</pre>
+      </div>
+      <div class="card">
+        <h2>Overwork Score JSON</h2>
+        <pre id="scoreJson">No score yet.</pre>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Generated report</h2>
+      <pre id="report">No report yet.</pre>
+    </section>
+
+    <section class="card">
+      <h2>LLM analyst output</h2>
+      <pre id="llmOutput">No LLM analysis yet.</pre>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
